@@ -32,7 +32,7 @@ enviar_email = input("Deja enviar o resultado por e-mail? (digite 's' ou 'n')")
 
 if enviar_email == "s":
     ativar_email = True
-    seu_endereço = input("Digite seu e-mail (precisa ser Gmail): ")
+    seu_endereco = input("Digite seu e-mail (precisa ser Gmail): ")
     sua_senha = input("Digite sua senha: " )
     destinatario = input("Digite o destinatário: ")
 
@@ -49,11 +49,11 @@ novo_relatorio_url = requests.get(f"http://usda.mannlib.cornell.edu/usda/waob/wa
 while True:
     novo_relatorio_url = requests.get(f"http://usda.mannlib.cornell.edu/usda/waob/wasde//2010s/{ano_base}/wasde-{base_novo_relatorio}.xml")
     if novo_relatorio_url.status_code == 200:
-        break
         print(f"Relatório {base_novo_relatorio} encontrado!!")
+        break
     else: 
-        print(f"Relatório {base_novo_relatorio} ainda não disponível... tentando novamente em 10 segundos!")
-        time.sleep(10)
+        print(f"Relatório {base_novo_relatorio} ainda não disponível... tentando novamente em 5 segundos!")
+        time.sleep(5)
 
 
 ### Pegando página novo relatório
@@ -619,12 +619,12 @@ if ativar_email == True:
 
     import smtplib
 
-    gmail_sender = '{seu_endereço}'
+    gmail_sender = seu_endereço
 
     server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-    server.login('seu_endereço', 'sua_senha')
+    server.login(seu_endereco, sua_senha)
 
-    para = 'destinatario'
+    para = destinatario
     corpo = msg.encode('utf8')
 
     server.sendmail(gmail_sender, para, corpo)
