@@ -619,7 +619,7 @@ if ativar_email == True:
 
     import smtplib
 
-    gmail_sender = seu_endereço
+    gmail_sender = seu_endereco
 
     server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
     server.login(seu_endereco, sua_senha)
